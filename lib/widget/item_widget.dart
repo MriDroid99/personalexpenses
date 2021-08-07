@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+// Models
+import '../model/item.dart';
 
 class ItemWidget extends StatelessWidget {
   final String id, title;
   final double price;
   final DateTime date;
-  final Function removeItem;
   const ItemWidget(
     this.id,
     this.title,
     this.price,
-    this.date,
-    this.removeItem, {
+    this.date, {
     Key? key,
   }) : super(key: key);
 
@@ -39,7 +41,7 @@ class ItemWidget extends StatelessWidget {
           subtitle: Text('${DateFormat.yMMMd().format(date)}'),
           trailing: IconButton(
             onPressed: () {
-              removeItem(id);
+              Provider.of<Items>(context, listen: false).removeItem(id);
             },
             icon: Icon(
               Icons.delete,

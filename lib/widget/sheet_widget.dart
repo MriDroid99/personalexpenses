@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+// Models
+import '../model/item.dart';
 
 class SheetWidget extends StatefulWidget {
-  final Function(String title, double price, DateTime date) addItem;
-  SheetWidget(this.addItem, {Key? key}) : super(key: key);
+  SheetWidget({Key? key}) : super(key: key);
 
   @override
   _SheetWidgetState createState() => _SheetWidgetState();
@@ -66,8 +69,10 @@ class _SheetWidgetState extends State<SheetWidget> {
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
-                widget.addItem(_titleController.text,
-                    double.parse(_priceController.text), _selectedDate!);
+                Provider.of<Items>(context, listen: false).addItem(
+                    _titleController.text,
+                    double.parse(_priceController.text),
+                    _selectedDate!);
               },
               child: Text('Add Item'),
               style: ButtonStyle(

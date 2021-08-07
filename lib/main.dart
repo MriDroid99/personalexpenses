@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import './model/item.dart';
 
 // Screens
 import 'screen/items_screen.dart';
@@ -12,13 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Personal Expenses',
-      theme: ThemeData(
-        primaryColor: Colors.purple,
-        accentColor: Colors.purple.shade100,
+    return ChangeNotifierProvider.value(
+      value: Items(),
+      child: MaterialApp(
+        title: 'Personal Expenses',
+        theme: ThemeData(
+          primaryColor: Colors.purple,
+          accentColor: Colors.purple.shade100,
+        ),
+        home: ItemsScreen(),
       ),
-      home: ItemsScreen(),
     );
   }
 }

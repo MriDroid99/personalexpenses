@@ -8,16 +8,14 @@ import '../model/item.dart';
 import '../widget/item_widget.dart';
 import '../widget/sheet_widget.dart';
 
-import './screen.dart';
-
-class ItemsScreen extends StatefulWidget {
-  const ItemsScreen({Key? key}) : super(key: key);
+class Screen extends StatefulWidget {
+  const Screen({Key? key}) : super(key: key);
 
   @override
-  _ItemsScreenState createState() => _ItemsScreenState();
+  _ScreenState createState() => _ScreenState();
 }
 
-class _ItemsScreenState extends State<ItemsScreen> {
+class _ScreenState extends State<Screen> {
   // final List<Item> _items = [
   //   Item(id: '1', title: 'Item 1', price: 20, date: DateTime.now()),
   //   Item(id: '2', title: 'Item 2', price: 25, date: DateTime.now()),
@@ -54,7 +52,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
   }
 
   @override
-  void didUpdateWidget(covariant ItemsScreen oldWidget) {
+  void didUpdateWidget(covariant Screen oldWidget) {
     print('UpdateWidget');
     super.didUpdateWidget(oldWidget);
   }
@@ -78,15 +76,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('My Items'),
-        actions: [
-          IconButton(
-              onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => const Screen(),
-                    ),
-                  ),
-              icon: Icon(Icons.ac_unit))
-        ],
       ),
       body: _items.length == 0
           ? Center(
